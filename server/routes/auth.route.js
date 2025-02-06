@@ -56,7 +56,6 @@ export const signin = async (req, res) => {
     }
 };
 
-
 export const login = async (req, res) => {
     const { username, password } = req.body;
     try {
