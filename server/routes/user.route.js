@@ -65,7 +65,9 @@ export const getConnections = async (req, res) => {
             name: { $regex: filter, $options: "i" } 
         });
 
-        res.json(users);
+        res.json({
+            user : users
+        });
     } catch (error) {
         console.error("Error in searching user:", error);
         res.status(500).json({ message: "An error occurred while searching for users" });
