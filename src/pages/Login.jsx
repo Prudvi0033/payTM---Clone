@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -5,7 +6,7 @@ const login = () => {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-
+ 
   return (
     <div className='bg-zinc-950 w-full montserrat  h-screen flex justify-center items-center'>
       <div className='bg-white  text-black p-6 rounded-lg'>
@@ -16,7 +17,18 @@ const login = () => {
           <input onChange={(e) => {setUsername(e.target.value)}} className='w-full border border-gray-400 p-1 rounded-md mb-2' placeholder='xyz@gmail.com' />
           <label className='text-md font-medium'>Password</label><br />
           <input onChange={(e) => {setPassword(e.target.value)}} className='w-full border border-gray-400 p-1 rounded-md mb-2' placeholder='123456' />
-          <Link to="/dashboard" className="w-full block text-center mt-2 px-8 py-2 bg-black mb-2 text-white text-sm rounded-md font-semibold hover:bg-black/[0.8] hover:shadow-lg">Login</Link>
+          <button  className="w-full block text-center mt-2 px-8 py-2 bg-black mb-2 text-white text-sm rounded-md font-semibold hover:bg-black/[0.8] hover:shadow-lg"
+              onClick={async () => {
+                const response = await axios.post("http://localhost:8000/api/v1/auth/login",{
+                  username,
+                  password
+                })
+
+                localStorage.setItem("payTM-token",response.data.token)
+              }}>
+              Login
+            </button>
+          
           <span className='block w-full text-sm text-gray-400 text-center'>Don't have an account <Link className='text-gray-500 font-medium underline' to="/">Signup</Link></span>
         </div>
       </div>

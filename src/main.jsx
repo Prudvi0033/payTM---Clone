@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element : <Dashboard/>
   },
   {
-    path : "/transfer",
+    path : "/transfer/:userId",
     element : <Transfer/>
   }
 ])
