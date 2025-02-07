@@ -1,4 +1,5 @@
 import User from "../models/user.model.js"
+import Account from "../models/account.model.js"
 
 import bcrypt from "bcrypt"
 import { z } from "zod"
@@ -32,6 +33,14 @@ export const signin = async (req, res) => {
             username,
             password: hashedPassword,
         });
+
+
+        await Account.create({
+            user,
+            balance : 1 + Math.random() * 1000
+        })
+
+
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 

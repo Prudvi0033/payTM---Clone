@@ -6,6 +6,7 @@ import connectDB from "./lib/db.js";
 
 import authRoutes from "./controller/auth.controller.js"
 import userRoutes from "./controller/user.controller.js"
+import accountRoutes from "./controller/account.controller.js"
 
 dotenv.config()
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth",authRoutes)
 app.use("/api/v1/user",userRoutes)
+app.use("/api/v1/account",accountRoutes)
 
 app.listen(8000, () => {
     console.log("Server is Running");
